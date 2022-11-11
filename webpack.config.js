@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: {
     pool: './app/example/pool.ts',
+    test: './app/example/test.ts',
+    load3d: './app/example/load3d.ts',
   },
   output: {
     filename: '[name].js',
@@ -47,8 +49,18 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './app/index.html',
-      chunks: ['test'],
+      chunks: ['pool'],
       filename: './example/pool.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './app/index.html',
+      chunks: ['test'],
+      filename: './example/test.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './app/index.html',
+      chunks: ['load3d'],
+      filename: './example/load3d.html',
     }),
   ],
   devServer: {

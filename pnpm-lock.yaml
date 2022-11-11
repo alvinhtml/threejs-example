@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@tweenjs/tween.js': ^18.6.4
   '@types/three': ^0.146.0
   eslint: ^8.23.1
   file-loader: ^6.2.0
@@ -14,10 +15,11 @@ specifiers:
   webpack-dev-server: ^4.11.1
 
 dependencies:
-  '@types/three': 0.146.0
+  '@tweenjs/tween.js': 18.6.4
   three: 0.146.0
 
 devDependencies:
+  '@types/three': 0.146.0
   eslint: 8.27.0
   file-loader: 6.2.0_webpack@5.74.0
   html-webpack-plugin: 5.5.0_webpack@5.74.0
@@ -133,6 +135,10 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
     dev: true
+
+  /@tweenjs/tween.js/18.6.4:
+    resolution: {integrity: sha512-lB9lMjuqjtuJrx7/kOkqQBtllspPIN+96OvTCeJ2j5FEzinoAXTdAMFnDAQT1KVPRlnYfBrqxtqP66vDM40xxQ==}
+    dev: false
 
   /@types/body-parser/1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
@@ -252,11 +258,11 @@ packages:
     resolution: {integrity: sha512-75AgysUrIvTCB054eQa2pDVFurfeFW8CrMQjpzjt3yHBfuuknoSvvsESd/3EhQxPrz9si3+P0wiDUVsWUlljfA==}
     dependencies:
       '@types/webxr': 0.5.0
-    dev: false
+    dev: true
 
   /@types/webxr/0.5.0:
     resolution: {integrity: sha512-IUMDPSXnYIbEO2IereEFcgcqfDREOgmbGqtrMpVPpACTU6pltYLwHgVkrnYv0XhWEcjio9sYEfIEzgn3c7nDqA==}
-    dev: false
+    dev: true
 
   /@types/ws/8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
