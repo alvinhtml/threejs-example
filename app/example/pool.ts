@@ -2,6 +2,7 @@ import * as THREE from 'three'
 
 import TWEEN from '@tweenjs/tween.js'
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js'
 import {
   CSS3DRenderer,
@@ -144,9 +145,9 @@ function init() {
     element.style.backgroundColor =
       'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')'
 
-    element.addEventListener('click', (e) => {
-      console.log('e', e)
-    })
+    // element.addEventListener('click', (e) => {
+    //   console.log('e', e)
+    // })
 
     const ip = document.createElement('strong')
     ip.textContent = `${table[i].suffix}`
@@ -168,13 +169,7 @@ function init() {
     objectCSS.position.z = Math.random() * 4000 - 2000
 
     element.addEventListener('pointerdown', (e) => {
-      console.log('e', e, objectCSS, table[i])
-
-      camera.position.x = objectCSS.position.x
-      camera.position.y = objectCSS.position.y
-      // camera.position.z = 3200
-
-      render()
+      console.log(table[i].ip)
     })
 
     scene.add(objectCSS)
@@ -273,7 +268,7 @@ function init() {
 
   //
 
-  controls = new TrackballControls(camera, renderer.domElement)
+  controls = new OrbitControls(camera, renderer.domElement)
   controls.minDistance = 500
   controls.maxDistance = 6000
   controls.addEventListener('change', render)

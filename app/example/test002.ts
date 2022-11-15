@@ -1,14 +1,14 @@
 import * as THREE from 'three'
 
 import TWEEN from '@tweenjs/tween.js'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js'
 import {
   CSS3DRenderer,
   CSS3DObject,
 } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
 
 /*
- * 可拖动的立方体
+ * 旋转的立方体
  */
 
 const container = document.querySelector('#root') as HTMLDivElement
@@ -22,31 +22,13 @@ const scene = new THREE.Scene()
 /**
  * 创建网格模型
  */
-// 创建一个球体几何对象
-// const geometry = new THREE.SphereGeometry(60, 40, 40)
-
-// 创建一个立方体几何对象Geometry
-const geometry = new THREE.BoxGeometry(100, 100, 100)
-
-// 材质对象Material
-// color	材质颜色，比如蓝色0x0000ff
-// wireframe	将几何图形渲染为线框。 默认值为false
-// opacity	透明度设置，0表示完全透明，1表示完全不透明
-// transparent	是否开启透明，默认false
+// const geometry = new THREE.SphereGeometry(60, 40, 40) //创建一个球体几何对象
+const geometry = new THREE.BoxGeometry(100, 100, 100) //创建一个立方体几何对象Geometry
 const material = new THREE.MeshLambertMaterial({
   color: 0x00ff00,
-  opacity: 0.7,
-  // wireframe: true,
-  transparent: true,
-})
+}) //材质对象Material
 
-var sphereMaterial = new THREE.MeshPhongMaterial({
-  color: 0x00ff00,
-  specular: 0x4488ee,
-  shininess: 12,
-})
-
-const mesh = new THREE.Mesh(geometry, sphereMaterial) //网格模型对象Mesh
+const mesh = new THREE.Mesh(geometry, material) //网格模型对象Mesh
 scene.add(mesh) //网格模型添加到场景中
 
 /**
@@ -56,7 +38,6 @@ scene.add(mesh) //网格模型添加到场景中
 const point = new THREE.PointLight(0xffffff)
 point.position.set(400, 200, 300) //点光源位置
 scene.add(point) //点光源添加到场景中
-
 //环境光
 const ambient = new THREE.AmbientLight(0x444444)
 scene.add(ambient)
@@ -84,10 +65,13 @@ container.appendChild(renderer.domElement) //body元素中插入canvas对象
 //执行渲染操作   指定场景、相机作为参数
 renderer.render(scene, camera)
 
+let T0 = new Date() //上次时间
 function render() {
+  let T1 = new Date() //本次时间
+  let t = T1 - T0 //时间差
+  T0 = T1 //把本次时间赋值给上次时间
+  requestAnimationFrame(render)
   renderer.render(scene, camera) //执行渲染操作
+  mesh.rotateY(0.001 * t) //旋转角速度0.001弧度每毫秒
 }
 render()
-
-const controls = new OrbitControls(camera, renderer.domElement) //创建控件对象
-controls.addEventListener('change', render) //监听鼠标、键盘事件
